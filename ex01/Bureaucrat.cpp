@@ -6,11 +6,12 @@
 /*   By: acomet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 19:30:59 by acomet            #+#    #+#             */
-/*   Updated: 2024/02/27 00:09:36 by acomet           ###   ########.fr       */
+/*   Updated: 2024/02/27 20:14:32 by acomet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(void) : _name("BOB"), _grade(150)
 {
@@ -20,19 +21,13 @@ Bureaucrat::Bureaucrat(void) : _name("BOB"), _grade(150)
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
 	if (grade < 1)
-	{
 		throw GradeTooHighException();
-		_grade = 150;
-	}
 	else if (grade > 150)
-	{
 		throw GradeTooLowException();
-		_grade = 150;
-	}
 	return;
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const &src) : _name(src.getName()), _grade(src.getGrade())
+Bureaucrat::Bureaucrat(Bureaucrat const &src) : _name(src.getName() + "copy"), _grade(src.getGrade())
 {
 	return;
 }
@@ -70,4 +65,15 @@ void	Bureaucrat::decrement(void)
 	this->_grade++;
 	if (this->_grade == 151)
 		throw GradeTooHighException();
+}
+
+void	Bureaucrat::signForm(Form &src)
+{
+	src.beSigned(*this);
+}
+
+std::ostream	&operator<<(std::ostream &o, Bureaucrat const &rhs) {
+
+	o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << "." << std::endl;
+	return (o);
 }

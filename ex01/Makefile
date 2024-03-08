@@ -6,7 +6,7 @@
 #    By: acomet <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 16:30:18 by acomet            #+#    #+#              #
-#    Updated: 2024/02/26 20:56:40 by acomet           ###   ########.fr        #
+#    Updated: 2024/02/27 20:15:59 by acomet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ BUILD		=	build
 
 SRCS		= 	main.cpp \
 				Bureaucrat.cpp \
+				Form.cpp \
 
 OBJS 		= 	$(SRCS:%.cpp=$(BUILD)/%.o)
 

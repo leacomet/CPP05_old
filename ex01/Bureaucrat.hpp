@@ -6,7 +6,7 @@
 /*   By: acomet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 21:55:06 by acomet            #+#    #+#             */
-/*   Updated: 2024/02/26 22:31:05 by acomet           ###   ########.fr       */
+/*   Updated: 2024/02/27 20:46:31 by acomet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <string>
+
+class	Form;
 
 class	Bureaucrat
 {
@@ -32,26 +34,29 @@ public:
 
 	void				increment(void);
 	void				decrement(void);
-
-	class	GradeTooHighException : public std::exception
-	{
-	public:
-		virtual const char	*what() const throw() {
-			return ("Grade Too High Exception !"); }
-	};
-
-	class	GradeTooLowException : public std::exception
-	{
-	public:
-		virtual const char *what() const throw() {
-			return ("Grade Too Low Exception !"); }
-	};
+	void				signForm(Form &src);
 
 private:
 
 	std::string const	_name;
 	int					_grade;
 
+};
+
+std::ostream	&operator<<(std::ostream &o, Bureaucrat const &rhs);
+
+class	GradeTooHighException : public std::exception
+{
+public:
+	virtual const char	*what() const throw() {
+		return ("Grade Too High Exception !"); }
+};
+
+class	GradeTooLowException : public std::exception
+{
+public:
+	virtual const char *what() const throw() {
+		return ("Grade Too Low Exception !"); }
 };
 
 #endif
