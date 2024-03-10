@@ -22,7 +22,7 @@ Form::Form(std::string name, int const sign_grade, int const exec_grade) : _name
 {
 	if (this->_sign_grade < 1 || this->_exec_grade < 1)
 		throw GradeTooHighException();
-	if (this->_sign_grade < 150 || this->_exec_grade < 150)
+	if (this->_sign_grade > 150 || this->_exec_grade > 150)
 		throw GradeTooLowException();
 	return;
 }
@@ -65,12 +65,12 @@ int	Form::get_exec_grade() const
 
 void	Form::beSigned(Bureaucrat &src)
 {
-	if (!this->get_signature())
-		std::cout << src.getName() << " couldn’t sign " << this->_name << " because it is already signed.";
-	if (src.getGrade() >= this->_sign_grade)
+	if (this->get_signature())
+		std::cout << src.getName() << " couldn’t sign " << this->_name << " because it is already signed." << std::endl;
+	else if (src.getGrade() <= this->_sign_grade)
 	{
 		this->_signature = 1;
-		std::cout << src.getName() << " signed " << this->_name << std::endl << ".";
+		std::cout << src.getName() << " signed " << this->_name << "." << std::endl;
 	}
 	else
 	{
@@ -81,7 +81,7 @@ void	Form::beSigned(Bureaucrat &src)
 
 std::ostream	&operator<<(std::ostream &o, Form const &rhs) {
 
-	o << rhs.get_name() << ", Form ";
+	o << rhs.get_name();
 	if (rhs.get_signature())
 		o << ", Form signed";
 	else
