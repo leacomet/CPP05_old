@@ -15,6 +15,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 #include <fstream>  
 
 int main(void)
@@ -310,4 +311,14 @@ int main(void)
 // 		std::cout << e.what() << std::endl;
 // 	}
 // }
+
+/*	Intern test	*/
+{
+	Bureaucrat	BigBoss("acomet", 1);
+	Intern		Sam;
+	AForm		*form1; = Sam.makeForm("nexistepas", "toimeme");
+	AForm		*form2 = Sam.makeForm("shrubbery creation", ".");
+	AForm		*form3 = Sam.makeForm("robotomy request", "Sam");
+	AForm		*form4 = Sam.makeForm("presidential pardon", "Sam");
+}
 }
