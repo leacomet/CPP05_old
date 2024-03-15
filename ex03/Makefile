@@ -24,7 +24,7 @@ SRCS		= 	main.cpp \
 				ShrubberyCreationForm.cpp \
 				RobotomyRequestForm.cpp \
 				PresidentialPardonForm.cpp \
-				Inter.cpp \
+				Intern.cpp \
 
 OBJS 		= 	$(SRCS:%.cpp=$(BUILD)/%.o)
 

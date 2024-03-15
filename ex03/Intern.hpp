@@ -31,9 +31,12 @@ public:
 	Intern	&operator=(Intern const &src);
 
 	AForm	*makeForm(std::string name, std::string target);
+	AForm	*form_shrubbery(std::string target);
+	AForm	*form_robotomy(std::string target);
+	AForm	*form_presidential(std::string target);
 
 };
 
-typedef void (Intern::*noforest)();
+typedef AForm *(Intern::*noforest)(std::string target);
 
 #endif

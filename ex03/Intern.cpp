@@ -13,13 +13,14 @@
 #include "Intern.hpp"
 #include "AForm.hpp"
 
-Intern::Intern(void) : _name("BOB"), _grade(150)
+Intern::Intern(void)
 {
 	return;
 }
 
 Intern::Intern(Intern const &src)
 {
+	(void)src;
 	return;
 }
 
@@ -30,39 +31,41 @@ Intern::~Intern(void)
 
 Intern	&Intern::operator=(Intern const &src)
 {
+	(void)src;
 	return (*this);
 }
 
 AForm	*Intern::makeForm(std::string name, std::string target)
 {
 	noforest	forms[3] = {&Intern::form_shrubbery, &Intern::form_robotomy, &Intern::form_presidential};
-	std::string	all_forms[3] = {"shrubbery creation", "robotomy reauest", "presidential form"};
+	std::string	all_forms[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	int			i = 0;
 
 	while (i < 3)
 	{
-		if (target == all_forms[i])
+		if (name == all_forms[i])
 			return ((this->*forms[i])(target));
 		i++;
 	}
-	std::cout << "the common intern inform you that the asked form doesn't exist !" << std::endl;
+	std::cout << "the common intern inform you that " << name << " form doesn't exist !" << std::endl;
+	return (NULL);
 }
 
-AForm	*form_shrubbery(std::string target)
+AForm	*Intern::form_shrubbery(std::string target)
 {
-	AForm	*temp = new PresidentialPardonForm(target);
+	AForm	*temp = new ShrubberyCreationForm(target);
 
 	return (temp);
 }
 
-AForm	*form_robotomy(std::string target)
+AForm	*Intern::form_robotomy(std::string target)
 {
 	AForm	*temp = new RobotomyRequestForm(target);
 
 	return (temp);
 }
 
-AForm	*form_presidential(std::string target)
+AForm	*Intern::form_presidential(std::string target)
 {
 	AForm	*temp = new PresidentialPardonForm(target);
 
